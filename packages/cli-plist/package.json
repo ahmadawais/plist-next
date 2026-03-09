@@ -1,0 +1,36 @@
+{
+  "name": "cli-plist",
+  "version": "0.0.2",
+  "description": "Apple plist parser/builder in TypeScript with CLI support",
+  "author": "Ahmad Awais <me@ahmadawais.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ahmadawais/plist.ts.git"
+  },
+  "type": "module",
+  "bin": {
+    "plist": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "plist-next": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

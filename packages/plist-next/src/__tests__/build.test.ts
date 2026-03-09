@@ -1,0 +1,137 @@
+import { describe, expect, it } from 'vitest';
+import { build } from '../index.js';
+
+describe('build()', () => {
+  it('should create a plist XML string from a String', () => {
+    const xml = build('test');
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <string>test</string>
+</plist>`);
+  });
+
+  it('should create a plist XML integer from a whole Number', () => {
+    const xml = build(3);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <integer>3</integer>
+</plist>`);
+  });
+
+  it('should create a plist XML real from a fractional Number', () => {
+    const xml = build(Math.PI);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <real>3.141592653589793</real>
+</plist>`);
+  });
+
+  it('should create a plist XML integer from a BigInt', () => {
+    const xml = build(BigInt('0x1fffffffffffff') as unknown as number);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <integer>9007199254740991</integer>
+</plist>`);
+  });
+
+  it('should create a plist XML date from a Date', () => {
+    const xml = build(new Date('2010-02-08T21:41:23Z'));
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <date>2010-02-08T21:41:23Z</date>
+</plist>`);
+  });
+
+  it('should create a plist XML data from a Buffer', () => {
+    const xml = build(Buffer.from('☃'));
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <data>4piD</data>
+</plist>`);
+  });
+
+  it('should create a plist XML true from a `true` Boolean', () => {
+    const xml = build(true);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <true/>
+</plist>`);
+  });
+
+  it('should create a plist XML false from a `false` Boolean', () => {
+    const xml = build(false);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <false/>
+</plist>`);
+  });
+
+  it('should create a plist XML dict from an Object', () => {
+    const xml = build({ foo: 'bar' });
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>foo</key>
+    <string>bar</string>
+  </dict>
+</plist>`);
+  });
+
+  it('should create a plist XML array from an Array', () => {
+    const xml = build([1, 'foo', false, new Date(1234)]);
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <array>
+    <integer>1</integer>
+    <string>foo</string>
+    <false/>
+    <date>1970-01-01T00:00:01Z</date>
+  </array>
+</plist>`);
+  });
+
+  it('should properly encode an empty string', () => {
+    const xml = build({ a: '' });
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>a</key>
+    <string/>
+  </dict>
+</plist>`);
+  });
+
+  it('should omit undefined values (key with no value)', () => {
+    const xml = build({ a: undefined as unknown as null });
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>a</key>
+  </dict>
+</plist>`);
+  });
+
+  it('should not omit null values', () => {
+    const xml = build({ a: null });
+    expect(xml).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>a</key>
+    <null/>
+  </dict>
+</plist>`);
+  });
+});
