@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1 (2026-03-09)
+
+### Features
+
+* Init ([09055e8](https://github.com/ahmadawais/plist-next/commit/09055e8bbf7b13a652aa1030ee26d183bcac14ba))
+
+### Bug Fixes
+
+* names ([6876907](https://github.com/ahmadawais/plist-next/commit/68769079160bd5dc08c5cbf49faf56ba07cc6407))
+
 ## 0.1.0 (2026-03-09)
 
 ### Features
