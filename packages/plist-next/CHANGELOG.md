@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.1.3](https://github.com/ahmadawais/plist-next/compare/0.0.5...0.1.3) (2026-03-09)
+
 ## [0.1.2](https://github.com/ahmadawais/plist-next/compare/0.0.3...0.1.2) (2026-03-09)
 
 ### Bug Fixes
