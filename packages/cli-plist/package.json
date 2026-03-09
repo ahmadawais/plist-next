@@ -1,6 +1,6 @@
 {
   "name": "cli-plist",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Apple plist parser/builder in TypeScript with CLI support",
   "author": "Ahmad Awais <me@ahmadawais.com>",
   "license": "Apache-2.0",
