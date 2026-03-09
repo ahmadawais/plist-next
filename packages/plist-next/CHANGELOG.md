@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.2](https://github.com/ahmadawais/plist-next/compare/0.0.3...0.1.2) (2026-03-09)
+
+### Bug Fixes
+
+* cover ([3f07068](https://github.com/ahmadawais/plist-next/commit/3f07068ef367738184b17ecc0dd80c8a563d60f7))
+
 ## 0.1.1 (2026-03-09)
 
 ### Features
