@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ahmadawais/plist.ts.git"
+    "url": "https://github.com/ahmadawais/plist-next.git"
   },
   "keywords": [
     "apple",
