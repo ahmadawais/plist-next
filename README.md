@@ -1,4 +1,4 @@
-![cover](https://raw.githubusercontent.com/commandcode/plist-next/main/.github/cover.png)
+![cover](https://raw.githubusercontent.com/commandcode/plist-next/main/.github/cover.jpg)
 
 # plist-next
 

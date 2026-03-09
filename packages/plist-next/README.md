@@ -1,3 +1,5 @@
+![cover](https://raw.githubusercontent.com/commandcode/plist-next/main/.github/cover.jpg)
+
 # plist-next
 
 Apple's property list parser/builder for Node.js — TypeScript with strict types and runtime validation.

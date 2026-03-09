@@ -1,3 +1,5 @@
+![cover](https://raw.githubusercontent.com/commandcode/plist-next/main/.github/cover.jpg)
+
 # plist-cli
 
 Command-line tool for parsing and building Apple plist files.
